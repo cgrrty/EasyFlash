@@ -127,6 +127,7 @@ void USART1_Configuration(void)
     USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
     USART_Init(USART1, &USART_InitStructure);
     
+		USART_ClearFlag(USART1,USART_FLAG_TC);
     USART_Cmd(USART1, ENABLE);
 }
 
@@ -154,7 +155,7 @@ int fputc(int ch, FILE *f)
 {
   USART_SendData(USART1, (uint8_t) ch);
   /* Loop until the end of transmission */
-  while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
+  while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET)
   {}
   return ch;
 }

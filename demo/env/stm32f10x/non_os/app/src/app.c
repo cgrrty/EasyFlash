@@ -9,6 +9,7 @@ int main(void){
         
     BSP_Init();
     
+		printf("app start ...\r\n");
     if (easyflash_init() == EF_NO_ERR) {
         /* test Env demo */
         test_env();
